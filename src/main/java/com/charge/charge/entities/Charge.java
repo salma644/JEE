@@ -1,6 +1,7 @@
 package com.charge.charge.entities;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 @Entity
@@ -13,7 +14,11 @@ public class Charge {
     private int id;
     private String title;
     private double montant;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateDernierDelai;
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate datePaiement;
     private String observation;
     @ManyToOne
@@ -24,15 +29,23 @@ public class Charge {
 
     }
 
-    public Charge(int id, String title, double montant, LocalDate dateDernierDelai, LocalDate datePaiement, String observation) {
-        this.id = id;
-        this.title = title;
-        this.montant = montant;
-        this.dateDernierDelai = dateDernierDelai;
-        this.datePaiement = datePaiement;
-        this.observation = observation;
+    @Override
+    public String toString() {
+        return "Charge{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", montant=" + montant +
+                ", dateDernierDelai=" + dateDernierDelai +
+                ", datePaiement=" + datePaiement +
+                ", observation='" + observation + '\'' +
+                ", famille=" + famille +
+                '}';
+    }
+
+    public void setFamille(Famille famille) {
         this.famille = famille;
     }
+
 
     public Charge(String title, double montant, LocalDate dateDernierDelai, LocalDate datePaiement, String observation) {
 

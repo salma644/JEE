@@ -31,7 +31,7 @@ public class ChargesApplicationTests {
 	public void testCreateCharge() {
 		Famille famille = new Famille("Charges financières");
 		famille = familleRepository.save(famille);
-		Charge charge = new Charge("Loyer", 1000.0, LocalDate.now(), LocalDate.now().plusMonths(1), "Observation",famille);
+		Charge charge = new Charge("Loisir", 1000.0, LocalDate.now(), LocalDate.now().plusMonths(1), "Observation",famille);
 		Charge savedCharge = chargeRepository.save(charge);
 		assertNotNull(savedCharge.getId());
 		assertEquals(charge.getTitle(), savedCharge.getTitle());

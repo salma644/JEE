@@ -37,5 +37,10 @@ public class ChargeServiceImp implements ChargeService {
     public void deleteCharge(int id) {
         chargeRepository.deleteById(id);
     }
+
+    @Override
+    public Charge saveCharge(Charge charge) {
+        return chargeRepository.save(charge);
+    }
 }
 

@@ -11,4 +11,6 @@ public interface ChargeService {
     Charge createCharge(Charge charge);
     Charge updateCharge(Charge charge);
     void deleteCharge(int id);
+
+    Charge saveCharge(Charge charge);
 }
