@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <meta charset="UTF-8">
+    <title>Charge List</title>
+</head>
+<body>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pricing</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="p-1 text-center bg-light">
+        <h1 class="mb-3">Product Creation - Thymeleaf</h1>
+    </div>
+</header>
+<main class="container mt-5">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">title</th>
+            <th scope="col">montant</th>
+            <th scope="col">dateDernierDelai</th>
+            <th scope="col">datePaiement</th>
+            <th scope="col">observation</th>
+            <th scope="col">options</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="charge:${chargethym}">
+            <td th:text="${charge.id}"></td>
+            <td th:text="${charge.title}"></td>
+            <td th:text="${charge.montant}"></td>
+            <td th:text="${charge.dateDernierDelai}"></td>
+            <td th:text="${charge.datePaiement}"></td>
+            <td th:text="${charge.observation}"></td>
+
+            <td><a onclick="return confirm('Are you sure to delete this item ?')"
+                   th:href="@{deleteCharge(id=${charge.id})}">Delete</a></td>
+            <td><a th:href="@{showCharge(id=${charge.id})}">Edit</a></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+
+
+</body>
+</html>

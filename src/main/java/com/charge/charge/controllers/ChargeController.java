@@ -7,6 +7,7 @@ import com.charge.charge.services.ChargeService;
 import com.charge.charge.services.FamilleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.charge.charge.entities.Charge;
@@ -36,4 +37,31 @@ public class ChargeController {
         Charge memo = chargeService.saveCharge(charge);
         return "CreateCharge";
     }
+    @RequestMapping("/chargesList")
+    public String chargesList (Model model) {
+        List<Charge> chargesController = chargeService.getAllCharges();
+        model.addAttribute("chargethym", chargesController);
+        //modelMap.addAttribute(attributeName: "productsJspl", productsController);
+        return "ChargesList";
+    }
+    @RequestMapping ("/deleteCharge")
+    public String deleteProduct (@RequestParam("id") int id, Model model) {
+        chargeService.deleteCharge(id);
+        List<Charge> chargesController = chargeService.getAllCharges();
+        model.addAttribute("chargethym", chargesController);
+        return "ChargesList";
+    }
+
+    @RequestMapping("/showCharge")
+    public String showCharge(@RequestParam("id") int id, Model model) throws ChangeSetPersister.NotFoundException {
+        Charge charge = chargeService.getChargeById(id);
+        model.addAttribute("chargethym", charge);
+        return "EditCharge";
+    }
+    @RequestMapping("/updateCharge")
+    public String updateCharge(@ModelAttribute("chargethym") Charge charge) {
+        chargeService.saveCharge(charge);
+        return "CreateCharge";
+    }
+
 }
