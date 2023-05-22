@@ -50,7 +50,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="charge:${chargethym}">
+        <tr th:each="charge:${chargethym.content}">
             <td th:text="${charge.id}"></td>
             <td th:text="${charge.title}"></td>
             <td th:text="${charge.montant}"></td>
@@ -59,11 +59,23 @@
             <td th:text="${charge.observation}"></td>
 
             <td><a onclick="return confirm('Are you sure to delete this item ?')"
-                   th:href="@{deleteCharge(id=${charge.id})}">Delete</a></td>
+                   th:href="@{deleteCharge(id=${charge.id},
+                   page=${currentPage},
+                   size=${size}
+
+)}"
+            >Delete</a></td>
             <td><a th:href="@{showCharge(id=${charge.id})}">Edit</a></td>
         </tr>
         </tbody>
     </table>
+    <ul class="nav nav-pills">
+        <li th:each="page,status:${pages}">
+            <a th:class="${status.index==currentPage? 'btn btn-primary': 'btn'}"
+               th:href="@{chargesList(page=${status.index}, size=${size})}"
+               th:text="${status.index}"></a>
+        </li> I
+    </ul>
 </main>
 
 

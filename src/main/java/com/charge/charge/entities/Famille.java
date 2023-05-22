@@ -1,6 +1,8 @@
 package com.charge.charge.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.util.List;
 
@@ -13,7 +15,9 @@ public class Famille {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    //@NotNull
     private String nom;
+    //@NotNull
     private String type;
 
     @OneToMany(mappedBy = "famille")

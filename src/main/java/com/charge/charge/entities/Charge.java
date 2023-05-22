@@ -1,6 +1,9 @@
 package com.charge.charge.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PastOrPresent;
+import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
@@ -12,13 +15,16 @@ public class Charge {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private int id;
+    //@Size(min=3 ,max = 20)
     private String title;
     private double montant;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+   //@PastOrPresent
     private LocalDate dateDernierDelai;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+   // @PastOrPresent
     private LocalDate datePaiement;
     private String observation;
     @ManyToOne
