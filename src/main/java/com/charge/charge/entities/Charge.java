@@ -62,23 +62,6 @@ public class Charge {
         this.famille = famille;
     }
 
-    /*public Charge(String title, double montant, LocalDate dateDernierDelai, LocalDate datePaiement, String observation) {
-
-        this.title = title;
-        this.montant = montant;
-        this.dateDernierDelai = dateDernierDelai;
-        this.datePaiement = datePaiement;
-        this.observation = observation;
-    }
-
-    public Charge(String title, double montant, LocalDate dateDernierDelai, LocalDate datePaiement, String observation, Famille famille) {
-        this.title = title;
-        this.montant = montant;
-        this.dateDernierDelai = dateDernierDelai;
-        this.datePaiement = datePaiement;
-        this.observation = observation;
-        this.famille = famille;
-    }*/
 
     public int getId() {
         return id;

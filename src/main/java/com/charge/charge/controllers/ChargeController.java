@@ -23,6 +23,7 @@ public class ChargeController {
     ChargeService chargeService;
     @Autowired
     FamilleService familleService;
+
     @RequestMapping("/createCharge")
     public String createCharge(Model model) {
         List<Famille> familleList = familleService.getAllFamilles();
@@ -32,17 +33,18 @@ public class ChargeController {
     }
 
     @RequestMapping("/saveCharge")
-    public String saveCharge(@ModelAttribute("chargethym") Charge charge,  @RequestParam("familleId") int familleId) throws ChangeSetPersister.NotFoundException {
+    public String saveCharge(@ModelAttribute("chargethym") Charge charge, @RequestParam("familleId") int familleId) throws ChangeSetPersister.NotFoundException {
 
         Famille famille = familleService.getFamilleById(familleId);
         charge.setFamille(famille);
         Charge memo = chargeService.saveCharge(charge);
         return "CreateCharge";
     }
+
     @RequestMapping("/chargesList")
-    public String chargesList (Model model ,
-                               @RequestParam(name="page", defaultValue = "0") int page,
-                               @RequestParam(name="size", defaultValue = "2") int size
+    public String chargesList(Model model,
+                              @RequestParam(name = "page", defaultValue = "0") int page,
+                              @RequestParam(name = "size", defaultValue = "2") int size
     ) {
         Page<Charge> chargesController = chargeService.getAllChargesByPage(page, size);
         model.addAttribute("chargethym", chargesController);
@@ -51,10 +53,11 @@ public class ChargeController {
 //modelMap.addAttribute(attributeName: "productsJspl", productsController);
         return "ChargesList";
     }
-    @RequestMapping ("/deleteCharge")
-    public String deleteProduct (@RequestParam("id") int id, Model model,
-                                 @RequestParam(name="page", defaultValue = "0") int page,
-                                 @RequestParam(name="size", defaultValue = "2") int size
+
+    @RequestMapping("/deleteCharge")
+    public String deleteProduct(@RequestParam("id") int id, Model model,
+                                @RequestParam(name = "page", defaultValue = "0") int page,
+                                @RequestParam(name = "size", defaultValue = "2") int size
 
 
     ) {
@@ -73,10 +76,19 @@ public class ChargeController {
         model.addAttribute("chargethym", charge);
         return "EditCharge";
     }
+
     @RequestMapping("/updateCharge")
     public String updateCharge(@ModelAttribute("chargethym") Charge charge) {
         chargeService.updateCharge(charge);
         return "redirect:/chargesList";
     }
 
+    @GetMapping("/")
+    public String home() {
+        return "redirect:/chargesList";
+    }
+    @GetMapping("/accessDenied")
+    public String accessDenied() {
+        return "accessDenied";
+    }
 }
