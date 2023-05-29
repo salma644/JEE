@@ -91,4 +91,8 @@ public class ChargeController {
     public String accessDenied() {
         return "accessDenied";
     }
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
 }

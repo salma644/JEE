@@ -21,10 +21,11 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.formLogin();
-        httpSecurity.authorizeHttpRequests().requestMatchers("/createCharge","/saveCharge").hasAnyRole("ADMIN","CASHIER");
-        httpSecurity.authorizeHttpRequests().requestMatchers("/showCharge","/updateCharge","/deleteCharge").hasAnyRole("ADMIN");
-        httpSecurity.authorizeHttpRequests().requestMatchers("/chargesList").hasAnyRole("ADMIN","CASHIER","USER");
+        httpSecurity.formLogin().loginPage("/login").defaultSuccessUrl("/").permitAll();
+        httpSecurity.authorizeHttpRequests().requestMatchers("/webjars/**").permitAll();
+        httpSecurity.authorizeHttpRequests().requestMatchers("/createCharge","/saveCharge").hasAnyAuthority("ROLE_ADMIN","ROLE_CASHIER");
+        httpSecurity.authorizeHttpRequests().requestMatchers("/showCharge","/updateCharge","/deleteCharge").hasAnyAuthority("ROLE_ADMIN");
+        httpSecurity.authorizeHttpRequests().requestMatchers("/chargesList").hasAnyAuthority("ROLE_ADMIN","ROLE_CASHIER","ROLE_USER");
         httpSecurity.authorizeHttpRequests().anyRequest().authenticated();
         httpSecurity.exceptionHandling().accessDeniedPage("/accessDenied");
         return httpSecurity.build();
