@@ -13,17 +13,26 @@
 
 <body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  <a class="navbar-brand" href="#"><img src="path/to/logo.png" alt="Logo"></a>
+  <a class="navbar-brand" href="#">MyPlan</a>
   <ul class="navbar-nav">
     <li class="nav-item">
       <a class="nav-link" th:href="@{chargesList}">Home</a>
     </li>
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Products</a>
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Charges</a>
       <ul class="dropdown-menu">
         <li th:if="${#authorization.expression('hasAnyAuthority(''ROLE_ADMIN'',''ROLE_CASHIER'')')}">
           <a class="dropdown-item" th:href="@{createCharge}">New</a></li>
         <li><a class="dropdown-item" th:href="@{chargesList}">List</a></li>
+      </ul>
+    </li>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Familles</a>
+      <ul class="dropdown-menu">
+        <li th:if="${#authorization.expression('hasAnyAuthority(''ROLE_ADMIN'',''ROLE_CASHIER'')')}">
+          <a class="dropdown-item" th:href="@{createFamille}">New</a></li>
+        <li><a class="dropdown-item" th:href="@{famillesList}">List</a></li>
       </ul>
     </li>
   </ul>
@@ -48,7 +57,7 @@
 </div>
 <footer class="text-center fixed-bottom text-lg-start bg-light text-muted">
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    &copy; 2023 All rights reserved | <a class="text-reset fw-bold" href="http://designlove.com/">6solutions.com</a>
+    &copy; 2023 All rights reserved | <a class="text-reset fw-bold" href="http://designlove.com/">designlove.com</a>
   </div>
 </footer>
 </body>

@@ -44,11 +44,11 @@ public class SecurityConfig {
                         .password(passwordEncoder.encode("123"))
                         .authorities(Arrays.asList(adminAuthority, userAuthority))
                         .build(),
-                User.withUsername("cashier")
+                User.withUsername("user1")
                         .password(passwordEncoder.encode("123"))
                         .authorities(Collections.singletonList(cashierAuthority))
                         .build(),
-                User.withUsername("accountant")
+                User.withUsername("user2")
                         .password(passwordEncoder.encode("123"))
                         .authorities(Collections.singletonList(accountantAuthority))
                         .build()
